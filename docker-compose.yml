@@ -1,0 +1,9 @@
+pound:
+  restart: always
+  build: .
+  env_file:
+    - pound.env
+  ports:
+    - "8080:80"
+  volumes:
+    - conf.d/pound.cfg:/etc/pound/config.cfg
