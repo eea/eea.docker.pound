@@ -32,7 +32,7 @@ your non-related EEA projects.
     $ git clone https://github.com/eea/eea.docker.pound.git
     $ cd eea.docker.pound
 
-The docker image can be used by mounting a pound configuration file to /etc/pountd/config.cfg,
+The docker image can be used by mounting a pound configuration file to /etc/pound/config.cfg,
 by setting the BACKENDS variable in pound.env file or by setting the links to applications in
 docker-compose.
 

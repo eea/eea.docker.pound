@@ -31,7 +31,7 @@ else
       echo 'End' >> $CONFIG_FILE
     done
   elif grep -q 'eeadockerpound' /etc/hosts; then
-    tail -n +2 /etc/hosts | grep '172.17.1' | cut -f 1 | sort | uniq | while read ip; do
+    tail -n +2  /etc/hosts | grep -vE '::|localhost' | cut -f 1 | sort | uniq | while read ip; do
       echo 'Backend' >> $CONFIG_FILE
       echo "Address $ip" >> $CONFIG_FILE
       echo "Port 80" >> $CONFIG_FILE
