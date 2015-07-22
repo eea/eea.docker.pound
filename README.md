@@ -33,11 +33,32 @@ your non-related EEA projects.
     $ cd eea.docker.pound
 
 
+### Run with Docker Compose
+Using Docker Compose variable is the quickest way to start a container and connect the available webapps through the 'links' parameter. Here is a basic example of a `docker-compose.yml` file using the `eeacms/pound` docker image:
+
+    webapp:
+        image: razvan3895/nodeserver
+
+    pound:
+        image: eeacms/pound:latest
+        links:
+            - webapp
+        ports:
+            - "80:80"
+        # env_file:
+        #    - pound.env
+
+
+The application can be scaled to use more server instances, with `docker-compose scale`:
+
+    $ docker-compose scale webapp=<number of instances> pound=1
+
+
 ### Run with backends specified as environment variable
 
     $ docker run --env BACKENDS="172.17.1.83:80 172.17.1.84:80" eeacms/pound:latest
 
-Using the `BACKENDS` variable is the quickest way to start a container. The servers are written as `server_ip:server_listening_port`, separated by spaces (and enclosed in quotes, to avoid issues). The contents of the variable are evaluated in a bash script that writes the Pound configuration file automatically.
+The servers are written as `server_ip:server_listening_port`, separated by spaces (and enclosed in quotes, to avoid issues). The contents of the variable are evaluated in a bash script that writes the Pound configuration file automatically.
 
 ### Use a custom configuration file mounted as a volume
 
@@ -59,26 +80,6 @@ This is the preferred way to start a container because the configuration file ca
   * `TIMEOUT` How long should Pound wait for a response from the back-end - `default` 15 seconds
   * `BACKENDS` The servers are written as `server_ip:server_listening_port`, separated by spaces (and enclosed in quotes, to avoid issues)
 
-### Docker Compose example
-Here is a basic example of a `docker-compose.yml` file using the `eeacms/pound` docker image:
-
-    webapp:
-        image: razvan3895/nodeserver
-
-    pound:
-        image: eeacms/pound:latest
-        bouild: .
-        links:
-            - webapp
-        ports:
-            - "80:80"
-        # env_file:
-        #    - pound.env
-
-
-The application can be scaled to use more server instances, with `docker-compose scale`:
-
-    $ docker-compose scale nodeserver=<number of instances> pound=1
 
 ## Copyright and license
 

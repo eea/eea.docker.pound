@@ -10,5 +10,7 @@ RUN \
 
 ADD run.sh /bin/run.sh
 RUN chmod a+x /bin/run.sh
+COPY reload.sh  /bin/reload
+RUN chmod a+x /bin/reload
 RUN mkdir -p /etc/pound
 CMD /bin/run.sh
