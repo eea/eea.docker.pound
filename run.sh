@@ -30,7 +30,7 @@ else
       echo "Port ${address[1]}" >> $CONFIG_FILE
       echo 'End' >> $CONFIG_FILE
     done
-  elif grep -q 'eeadockerpound' /etc/hosts; then
+  elif tail -n +2 /etc/hosts | grep -vqE '::|localhost'; then
     tail -n +2  /etc/hosts | grep -vE '::|localhost' | cut -f 1 | sort | uniq | while read ip; do
       echo 'Backend' >> $CONFIG_FILE
       echo "Address $ip" >> $CONFIG_FILE
