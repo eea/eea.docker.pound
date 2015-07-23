@@ -65,8 +65,10 @@ evaluated in a bash script that writes the Pound configuration file automaticall
 
 ### Use a custom configuration file mounted as a volume
 
-    $ It is mandatory that the configuration file is mounted at /etc/pound/config.cfg
-    $ docker run -v /absolute/path/to/pound/configuration:/etc/pound/config.cfg eeacms/pound:latest
+It is mandatory that the configuration file is mounted at /etc/pound/config.cfg
+
+    $ docker run -v conf.d/pound.cfg:/etc/pound/config.cfg eeacms/pound:latest
+
 
 This is the preferred way to start a container because the configuration file
 can be modified locally at any time. In order for the modifications to be applied,
