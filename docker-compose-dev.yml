@@ -1,0 +1,11 @@
+pound:
+  build: .
+  ports:
+  - "80:80"
+  env_file:
+  - pound.env
+  links:
+  - webapp
+
+webapp:
+  image: razvan3895/nodeserver

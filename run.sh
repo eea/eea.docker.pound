@@ -41,4 +41,4 @@ else
   echo 'End' >> $CONFIG_FILE
 fi
 
-/usr/sbin/pound $PARAMS
+exec /usr/sbin/pound $PARAMS
