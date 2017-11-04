@@ -8,7 +8,7 @@ RUN \
   yum clean all
 
 
-ADD run.sh /bin/run.sh
+COPY run.sh /bin/run.sh
 RUN chmod a+x /bin/run.sh
 COPY reload.sh  /bin/reload
 RUN chmod a+x /bin/reload
